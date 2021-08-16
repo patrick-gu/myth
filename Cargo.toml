@@ -1,0 +1,11 @@
+[package]
+name = "myth"
+version = "0.0.0"
+authors = ["patrick-gu"]
+edition = "2018"
+description = "Reserved for a work in progress"
+documentation = "https://docs.rs/myth"
+readme = "README.md"
+homepage = "https://github.com/patrick-gu/myth"
+repository = "https://github.com/patrick-gu/myth"
+license = "MIT OR Apache-2.0"
