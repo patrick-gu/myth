@@ -1,11 +1,57 @@
 [package]
 name = "myth"
-version = "0.0.0"
+version = "0.1.0"
 authors = ["patrick-gu"]
-edition = "2018"
-description = "Reserved for a work in progress"
+edition = "2021"
+description = "A web framework"
 documentation = "https://docs.rs/myth"
 readme = "README.md"
 homepage = "https://github.com/patrick-gu/myth"
 repository = "https://github.com/patrick-gu/myth"
 license = "MIT OR Apache-2.0"
+
+[dependencies]
+futures-util = { version = "0.3.17", default-features = false }
+http = "0.2.5"
+httpdate = "1"
+hyper = { version = "0.14.15", features = ["http1", "http2", "server", "tcp"] }
+mime = "0.3"
+multipart = { version = "0.18", default-features = false, features = ["server"], optional = true }
+percent-encoding = "2"
+pin-project-lite = "0.2"
+rustls-pemfile = "0.2"
+serde = "1"
+serde_json = { version = "1", optional = true }
+serde_urlencoded = "0.7"
+tokio = { version = "1.15", features = ["signal"] }
+tokio-rustls = { version = "0.23", optional = true }
+tracing = { version = "0.1", default-features = false, features = ["std"] }
+unused = "0.1"
+
+[features]
+default = []
+full = ["json", "multipart", "tls"]
+json = ["serde_json"]
+tls = ["tokio-rustls"]
+
+[dev-dependencies]
+futures-util = "0.3.17"
+serde = { version = "1", features = ["derive"] }
+rand = "0.8"
+reqwest = "0.11"
+tokio = { version = "1", features = ["fs", "macros", "rt-multi-thread", "signal", "sync"] }
+tower = { version = "0.4", features = ["make"] }
+tracing-subscriber = { version = "0.3.3", features = ["env-filter"] }
+
+[[example]]
+name = "hello"
+
+[[example]]
+name = "json"
+required-features = ["json"]
+
+[[example]]
+name = "request_info"
+
+[package.metadata.docs.rs]
+rustc-args = ["--cfg", "myth_docs"]
